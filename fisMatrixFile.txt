@@ -1,0 +1,73 @@
+[System]
+Name='Fuzzy1'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=27
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='mom'
+
+[Input1]
+Name='QueueLength'
+Range=[0 20]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 6 8]
+MF2='Median':'trapmf',[6 8 12 14]
+MF3='High':'trapmf',[12 14 20 20]
+
+[Input2]
+Name='RTime'
+Range=[0 70]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 20 30]
+MF2='Median':'trapmf',[20 30 40 50]
+MF3='High':'trapmf',[40 50 70 70]
+
+[Input3]
+Name='DownFlow'
+Range=[0 80]
+NumMFs=3
+MF1='Small':'trapmf',[0 0 10 30]
+MF2='Median':'trapmf',[10 30 50 70]
+MF3='Large':'trapmf',[50 70 80 80]
+
+[Output1]
+Name='ppd'
+Range=[0 1]
+NumMFs=3
+MF1='Small':'trapmf',[0 0 0.2 0.4]
+MF2='Median':'trapmf',[0.2 0.4 0.6 0.8]
+MF3='Large':'trapmf',[0.6 0.8 1 1]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 1 (1) : 1
+1 1 3, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 1 (1) : 1
+1 2 3, 1 (1) : 1
+1 3 1, 1 (1) : 1
+1 3 2, 1 (1) : 1 
+1 3 3, 1 (1) : 1
+2 1 1, 2 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 2 (1) : 1
+2 2 1, 2 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 3, 2 (1) : 1
+2 3 1, 2 (1) : 1
+2 3 2, 2 (1) : 1
+2 3 3, 2 (1) : 1
+3 1 1, 3 (1) : 1
+3 1 2, 3 (1) : 1
+3 1 3, 3 (1) : 1
+3 2 1, 3 (1) : 1
+3 2 2, 3 (1) : 1
+3 2 3, 3 (1) : 1
+3 3 1, 3 (1) : 1
+3 3 2, 3 (1) : 1
+3 3 3, 3 (1) : 1

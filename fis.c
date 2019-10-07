@@ -137,7 +137,7 @@ typedef struct mf_node {
 /* Copyright 1994-2015 The MathWorks, Inc.  */
 
 /* display error message and exit */
-static void fisError(char *msg)
+void fisError(char *msg)
 {
 #ifdef MATLAB_MEX_FILE
 	mexErrMsgTxt(msg);
@@ -214,7 +214,7 @@ char **fisCreateMatrix(int row_n, int col_n, int element_size)
 
 
 /* won't complain if given matrix is already freed */
-static void fisFreeMatrix(void **matrix, int row_n)
+void fisFreeMatrix(void **matrix, int row_n)
 {
 	int i;
 	if (matrix != NULL) {
@@ -947,7 +947,7 @@ void fisAssignFunctionPointer(FIS *fis)
 }
 
 #ifndef NO_PRINTF
-static void fisPrintData(FIS *fis)
+void fisPrintData(FIS *fis)
 {
 	int i, j, k;
 
@@ -1241,7 +1241,7 @@ void fisCheckDataStructure(FIS *fis)
 
 /* Build FIS node and load parameter from fismatrix directly */
 /* col_n is the number of columns of the fismatrix */
-static void fisBuildFisNode(FIS *fis, DOUBLE **fismatrix, int col_n, int numofpoints)
+void fisBuildFisNode(FIS *fis, DOUBLE **fismatrix, int col_n, int numofpoints)
 {
 	int i, j, k;
 	int *in_mf_n, *out_mf_n;
@@ -1885,7 +1885,7 @@ void fisEvaluate(FIS *fis, int numofpoints)
 /* given input vector and FIS data structure, return output */
 /* this is a wrap-up on fisEvaluate () */  
 /* used in fismain() only */
-static void getFisOutput(DOUBLE *input, FIS *fis, DOUBLE *output)
+void getFisOutput(DOUBLE *input, FIS *fis, DOUBLE *output)
 {
 	int i;
 
@@ -2192,7 +2192,7 @@ int *col_n_p;
 }
 
 /* return a FIS matrix with all information */
-static DOUBLE **
+DOUBLE **
 #ifdef __STDC__
 returnFismatrix(char *fis_file, int *row_n_p, int *col_n_p)
 #else

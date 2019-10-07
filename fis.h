@@ -122,5 +122,41 @@ typedef struct mf_node {
 	DOUBLE value;		    /* for Sugeno only */
 	DOUBLE *value_array;	/* for Mamdani only, array of MF values */
 } MF;
+/***********************************************************************
+some redefinition universal functions 
+ **********************************************************************/
+/* display error message and exit */
+void fisError(char *msg);
+
+/* define a standard memory access function with error checking */
+void *fisCalloc(int num_of_x, int size_of_x);
+
+char **fisCreateMatrix(int row_n, int col_n, int element_size);
+void fisFreeMatrix(void **matrix, int row_n);
+
+/***********************************************************************
+ Data structure: construction, printing, and destruction 
+ **********************************************************************/
+
+/* Build/Free FIS node and load parameter from fismatrix directly */
+/* col_n is the number of columns of the fismatrix */
+void fisBuildFisNode(FIS *fis, DOUBLE **fismatrix, int col_n, int numofpoints);
+void fisFreeFisNode(FIS *fis);
+
+void fisPrintData(FIS *fis);
+
+/***********************************************************************
+ Evaluate the constructed FIS based on given input vector 
+ **********************************************************************/
+
+/* given input vector and FIS data structure, return output */
+/* this is a wrap-up on fisEvaluate() */  
+void getFisOutput(DOUBLE *input, FIS *fis, DOUBLE *output);
+
+/* return a FIS matrix with all information */
+DOUBLE **returnFismatrix(char *fis_file, int *row_n_p, int *col_n_p);
+
+/* return data matrix */
+DOUBLE **returnDataMatrix(char *filename, int *row_n_p, int *col_n_p);
 
 #endif /* __FIS__ */
